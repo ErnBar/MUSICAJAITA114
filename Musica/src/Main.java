@@ -76,24 +76,20 @@ public class Main {
                     }
                     break;
                 case 3:
-                    System.out.println(("Scegli su quale tabella lavorare:\n" +
+                    switch (IScanner.genericScanner(Integer.class,"Scegli su quale tabella lavorare:\n" +
                             "1:RECORD_LABEL\n" +
                             "2:ARTIST\n" +
                             "3:ALBUM\n" +
-                            "4:SONG"));
-                    sceltaTabella=Integer.parseInt(scanner.nextLine());
-                    switch (sceltaTabella){
+                            "4:SONG")){
                         case 1:
-                            System.out.println("Inserisci nome");
-                            String nome=scanner.nextLine();
-                            Entity record=new Record_label(-45,nome);
+                            Entity record=new Record_label(-45,IScanner.genericScanner(String.class,"Inserisci nome"));
                             music.addRecord_Label(record);
                             break;
                         case 2:
                             System.out.println("Inserisci Record_label_id");
                             int record_label_id=Integer.parseInt(scanner.nextLine());
                             System.out.println("Inserisci Nome");
-                            nome=scanner.nextLine();
+                            String nome=scanner.nextLine();
                             Entity artist=new Artist(-45,record_label_id,nome);
                             music.addArtist(artist);
                             break;
