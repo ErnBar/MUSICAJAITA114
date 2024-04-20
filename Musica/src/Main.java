@@ -12,7 +12,6 @@ public class Main {
     public static void main(String[] args) {
 
         IServiceMusic music=new ServiceMusic();
-        Scanner scanner=new Scanner(System.in);
 
         System.out.println("Benvenuto.");
         String rispostaOperazioni="si";
@@ -86,25 +85,18 @@ public class Main {
                             music.addRecord_Label(record);
                             break;
                         case 2:
-                            System.out.println("Inserisci Record_label_id");
-                            int record_label_id=Integer.parseInt(scanner.nextLine());
-                            System.out.println("Inserisci Nome");
-                            String nome=scanner.nextLine();
-                            Entity artist=new Artist(-45,record_label_id,nome);
+                            Entity artist=new Artist(-45,IScanner.genericScanner(Integer.class,"Inserisci Record_label_id"),
+                                    IScanner.genericScanner(String.class,"Inserisci Nome"));
                             music.addArtist(artist);
                             break;
                         case 3:
-                            System.out.println("Inserisci Artist_id");
-                            int artist_id=Integer.parseInt(scanner.nextLine());
-                            System.out.println("Inserisci nome");
-                            nome=scanner.nextLine();
-                            System.out.println("Inserisci data.FORMATO YYYY-MM-GG");
-                            String data_release=scanner.nextLine();
                             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                             try {
-                                Date date = formatter.parse(data_release);
+                                Date date = formatter.parse(IScanner.genericScanner(String.class,"Inserisci data.FORMATO YYYY-MM-GG"));
                                 java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-                                Entity album=new Album(-45,artist_id,nome,sqlDate);
+                                Entity album=new Album(-45,IScanner.genericScanner(Integer.class,"Inserisci Artist_id")
+                                        ,IScanner.genericScanner(String.class,"Inserisci nome")
+                                        ,sqlDate);
                                 music.addAlbum(album);
                             } catch (ParseException e) {
                                 throw new RuntimeException(e);
@@ -115,27 +107,21 @@ public class Main {
                             music.addAlbum(album);*/
                             break;
                         case 4:
-                            System.out.println("Inserisci album_id");
-                            int album_id=Integer.parseInt(scanner.nextLine());
-                            System.out.println("Inserisci nome");
-                            nome=scanner.nextLine();
-                            System.out.println("Inserisci durata");
-                            double durata=Double.parseDouble(scanner.nextLine());
-                            Entity song=new Song(-45,album_id,nome,durata);
+                            Entity song=new Song(-45,IScanner.genericScanner(Integer.class,"Inserisci album_id")
+                                    ,IScanner.genericScanner(String.class,"Inserisci nome"),
+                                    IScanner.genericScanner(Double.class,"Inserisci durata"));
                             music.addSong(song);
                             break;
                         default:;
                     }
                     break;
                 case 4:
-                    System.out.println(("Scegli su quale tabella lavorare:\n" +
+                    sceltaTabella=IScanner.genericScanner(Integer.class,"Scegli su quale tabella lavorare:\n" +
                             "1:RECORD_LABEL\n" +
                             "2:ARTIST\n" +
                             "3:ALBUM\n" +
-                            "4:SONG"));
-                    sceltaTabella=Integer.parseInt(scanner.nextLine());
-                    System.out.println("Inserisci ID del record da eliminare.");
-                    id=Integer.parseInt(scanner.nextLine());
+                            "4:SONG");
+                    id=IScanner.genericScanner(Integer.class,"Inserisci ID del record da eliminare.");
                     switch (sceltaTabella){
                         case 1:
                             music.eliminaRecord_label(id);
@@ -153,46 +139,31 @@ public class Main {
                     }
                     break;
                 case 5:
-                    System.out.println(("Scegli su quale tabella lavorare:\n" +
+                    sceltaTabella=IScanner.genericScanner(Integer.class,"Scegli su quale tabella lavorare:\n" +
                             "1:RECORD_LABEL\n" +
                             "2:ARTIST\n" +
                             "3:ALBUM\n" +
-                            "4:SONG"));
-                    sceltaTabella=Integer.parseInt(scanner.nextLine());
-                    System.out.println("Scegli id della riga da modificare");
-                    id=Integer.parseInt(scanner.nextLine());
+                            "4:SONG");
+                    id=IScanner.genericScanner(Integer.class,"Scegli id della riga da modificare");
                     switch (sceltaTabella){
                         case 1:
-                            System.out.println("Scegli la colonna da modificare tra:\n" +
-                                    "| NAME |");
-                            String colonna=scanner.nextLine();
-                            System.out.println("Inserisci nuovo valore.");
-                            String valoreNuovo=scanner.nextLine();
-                            music.aggiornaRecord_label(id,colonna,valoreNuovo);
+                            music.aggiornaRecord_label(id,IScanner.genericScanner(String.class,"Scegli la colonna da modificare tra:\n" +
+                                    "| NAME |"),IScanner.genericScanner(String.class,"Inserisci nuovo valore."));
                             break;
                         case 2:
-                            System.out.println("Scegli la colonna da modificare tra:\n" +
-                                    "| record_label_id | name |");
-                            colonna=scanner.nextLine();
-                            System.out.println("Inserisci nuovo valore.");
-                            valoreNuovo=scanner.nextLine();
-                            music.aggiornaArtist(id,colonna,valoreNuovo);
+                            music.aggiornaArtist(id,IScanner.genericScanner(String.class,"Scegli la colonna da modificare tra:\n" +
+                                            "| record_label_id | name |"),
+                                    IScanner.genericScanner(String.class,"Inserisci nuovo valore."));
                             break;
                         case 3:
-                            System.out.println("Scegli la colonna da modificare tra:\n" +
-                                    "| Artist_id | name | date_release");
-                            colonna=scanner.nextLine();
-                            System.out.println("Inserisci nuovo valore.");
-                            valoreNuovo=scanner.nextLine();
-                            music.aggiornaAlbum(id,colonna,valoreNuovo);
+                            music.aggiornaAlbum(id,IScanner.genericScanner(String.class,"Scegli la colonna da modificare tra:\n" +
+                                            "| Artist_id | name | date_release"),
+                                    IScanner.genericScanner(String.class,"Inserisci nuovo valore."));
                             break;
                         case 4:
-                            System.out.println("Scegli la colonna da modificare tra:\n" +
-                                    "| Album_id | name | Duration");
-                            colonna=scanner.nextLine();
-                            System.out.println("Inserisci nuovo valore.");
-                            valoreNuovo=scanner.nextLine();
-                            music.aggiornaSong(id,colonna,valoreNuovo);
+                            music.aggiornaSong(id,IScanner.genericScanner(String.class,"Scegli la colonna da modificare tra:\n" +
+                                            "| Album_id | name | Duration"),
+                                    IScanner.genericScanner(String.class,"Inserisci nuovo valore."));
                             break;
                         default:;
                     }
@@ -225,11 +196,9 @@ public class Main {
                     break;
                 default:;
             }
-            System.out.println("\nVuoi effettuare altre operazioni?");
-            rispostaOperazioni=scanner.nextLine();
+            rispostaOperazioni=IScanner.genericScanner(String.class,"\nVuoi effettuare altre operazioni?");
         }while (rispostaOperazioni.equalsIgnoreCase("si"));
         System.out.println("Arrivederci!");
-        scanner.close();
 
 
     }
