@@ -6,7 +6,6 @@ import services.ServiceMusic;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -191,8 +190,6 @@ public class Main {
                     break;
                 case 13:
                     System.out.println(IStampa.stampaMappa(music.tabellaArtistiAlbumCanzoniEDurataCanzoni()));
-                    break;
-                case null:
                     break;
                 default:;
             }
