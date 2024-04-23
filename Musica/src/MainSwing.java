@@ -55,6 +55,52 @@ public class MainSwing {
         frame.getContentPane().add(panel);
         frame.pack();
         frame.setVisible(true);
+
+        JButton buttonAdd= new JButton("Aggiungi Elemento");
+        buttonAdd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addElement();
+            }
+        });
+        panel.add(buttonAdd);
+        frame.getContentPane().add(panel);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    private static void addElement(){
+        Entity entity=null;
+        JTextField tableName = new JTextField(10);
+        JPanel inputPanel = new JPanel();
+        inputPanel.add(new JLabel("Nome Tabella: "));
+        inputPanel.add(tableName);
+        int result = JOptionPane.showConfirmDialog(null, inputPanel, "Inserisci Nome Tabella",
+                JOptionPane.OK_CANCEL_OPTION);
+        if (result == JOptionPane.OK_OPTION && tableName.getText().equalsIgnoreCase("record_label")){
+            JTextField name=new JTextField(10);
+            JPanel inputPanel2 = new JPanel();
+            inputPanel2.add(new JLabel("Nome"));
+            inputPanel2.add(name);
+            result= JOptionPane.showConfirmDialog(null, inputPanel2, "Inserisci i dati richiesti",
+                    JOptionPane.OK_CANCEL_OPTION);
+            entity=new Record_label(-45,name.getText());
+            music.addRecord_Label(entity);
+        } else if (result == JOptionPane.OK_OPTION && tableName.getText().equalsIgnoreCase("artist")) {
+            JTextField record_label_id=new JTextField(10);
+            JTextField name=new JTextField(10);
+            JPanel inputPanel3 =new JPanel();
+            inputPanel3.add(new JLabel("Record_label_ID"));
+            inputPanel3.add(record_label_id);
+            inputPanel.add(Box.createVerticalBox());
+            inputPanel3.add(new JLabel("Nome"));
+            inputPanel3.add(name);
+            result=JOptionPane.showConfirmDialog(null, inputPanel3, "Inserisci i dati richiesti",
+                    JOptionPane.OK_CANCEL_OPTION);
+            entity=new Artist(-45,Integer.parseInt(record_label_id.getText()),name.getText());
+            music.addArtist(entity);
+        }
+
     }
 
     private static void showTables() {
