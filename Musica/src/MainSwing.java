@@ -16,6 +16,11 @@ public class MainSwing {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(MainSwing::createAndShowGUI);
+        //SwingUtilities.invokeLater(MainSwing::createAndShowGUI) è una chiamata che viene utilizzata per eseguire la
+        // creazione e la visualizzazione dell'interfaccia grafica Swing in un thread separato, noto come Event Dispatch Thread (EDT).
+        //In Java Swing, tutte le operazioni relative all'interfaccia utente,
+        // come la creazione di componenti Swing e l'aggiornamento dell'interfaccia grafica,
+        // devono essere eseguite all'interno dell'EDT per garantire la coerenza e la sicurezza dell'interfaccia utente.
     }
 
     private static void createAndShowGUI() {
@@ -37,10 +42,6 @@ public class MainSwing {
         });
         panel.add(button);
 
-        frame.getContentPane().add(panel);
-        frame.pack();
-        frame.setVisible(true);
-
         JButton buttonId= new JButton("Ricerca per ID");
         buttonId.addActionListener(new ActionListener() {
             @Override
@@ -49,12 +50,7 @@ public class MainSwing {
             }
         });
 
-
-
         panel.add(buttonId);
-        frame.getContentPane().add(panel);
-        frame.pack();
-        frame.setVisible(true);
 
         JButton buttonAdd= new JButton("Aggiungi Elemento");
         buttonAdd.addActionListener(new ActionListener() {
