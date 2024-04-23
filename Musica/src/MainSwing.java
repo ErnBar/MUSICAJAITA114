@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainSwing {
@@ -119,7 +120,9 @@ public class MainSwing {
             // Recupero e visualizz i dati della tabella indicata e dell'id ricercato attraverso il metodo in music
             Entity entity = music.cercaPerId(id, tableName);
 
-            JTable label = createTableID(entity);
+            ArrayList<Entity>list=new ArrayList<>();
+            list.add(entity);//Addo Entity ad una lista cosi posso usare il createTable
+            JTable label = createTable(list);
 
             // Attraverso i casting riconosco cosa aggiungere
             if (entity instanceof Record_label) {
@@ -200,44 +203,45 @@ public class MainSwing {
     }
 
     //Creo un metodo per la ricerca per ID che accetti Entity in input.(Quasi uguale a quello sopra)
-    private static JTable createTableID(Entity entities) {
-        if (entities instanceof Record_label) {
-            String[] columnNames = {"ID", "Name"};
-            DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-            Record_label recordLabel = (Record_label) entities;
-            Object[] rowData = {recordLabel.getId(), recordLabel.getName()};
-            model.addRow(rowData);
-            return new JTable(model);
-        }
-        if (entities instanceof Artist) {
-            String[] columnNames = {"ID", "Name","Record_label_id"};
-            DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-            Artist artist = (Artist) entities;
-            Object[] rowData = {artist.getId(), artist.getName(),artist.getRecord_label_id()};
-            model.addRow(rowData);
-            return new JTable(model);
-        }
-        if (entities instanceof Album) {
-            String[] columnNames = {"ID","Artist_id" ,"Name","Date_release",};
-            DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-            Album album = (Album) entities;
-            Object[] rowData = {album.getId(),album.getArtist_id(), album.getName(),album.getDate_release()};
-            model.addRow(rowData);
-            return new JTable(model);
-        }
-        if (entities instanceof Song) {
-            String[] columnNames = {"ID","Album_id" ,"Name","Duration",};
-            DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-            Song song = (Song) entities;
-            Object[] rowData = {song.getId(),song.getAlbum_id(), song.getName(),song.getDuration()};
-            model.addRow(rowData);
-
-            return new JTable(model);
-        }
-
-
-        else {
-            return new JTable();
-        }
-    }
+    //Metodo inutile in quanto uso sempre lo stesso alla fine
+//    private static JTable createTableID(Entity entities) {
+//        if (entities instanceof Record_label) {
+//            String[] columnNames = {"ID", "Name"};
+//            DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+//            Record_label recordLabel = (Record_label) entities;
+//            Object[] rowData = {recordLabel.getId(), recordLabel.getName()};
+//            model.addRow(rowData);
+//            return new JTable(model);
+//        }
+//        if (entities instanceof Artist) {
+//            String[] columnNames = {"ID", "Name","Record_label_id"};
+//            DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+//            Artist artist = (Artist) entities;
+//            Object[] rowData = {artist.getId(), artist.getName(),artist.getRecord_label_id()};
+//            model.addRow(rowData);
+//            return new JTable(model);
+//        }
+//        if (entities instanceof Album) {
+//            String[] columnNames = {"ID","Artist_id" ,"Name","Date_release",};
+//            DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+//            Album album = (Album) entities;
+//            Object[] rowData = {album.getId(),album.getArtist_id(), album.getName(),album.getDate_release()};
+//            model.addRow(rowData);
+//            return new JTable(model);
+//        }
+//        if (entities instanceof Song) {
+//            String[] columnNames = {"ID","Album_id" ,"Name","Duration",};
+//            DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+//            Song song = (Song) entities;
+//            Object[] rowData = {song.getId(),song.getAlbum_id(), song.getName(),song.getDuration()};
+//            model.addRow(rowData);
+//
+//            return new JTable(model);
+//        }
+//
+//
+//        else {
+//            return new JTable();
+//        }
+//    }
 }
