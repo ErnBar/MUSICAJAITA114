@@ -74,7 +74,7 @@ public class MainSwing {
 
     private static JTable createTable(List<Entity> entities) {
         if (!entities.isEmpty() && entities.get(0) instanceof Record_label) {
-            String[] columnNames = {"ID", "Name"}; 
+            String[] columnNames = {"ID", "Name"};
             DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
             for (Entity entity : entities) {
@@ -123,7 +123,6 @@ public class MainSwing {
 
 
         else {
-            // Se la lista è vuota o non contiene Record_label, restituisci una tabella vuota
             return new JTable();
         }
     }
