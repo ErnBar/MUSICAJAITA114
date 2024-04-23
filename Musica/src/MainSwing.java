@@ -74,47 +74,47 @@ public class MainSwing {
 
     private static JTable createTable(List<Entity> entities) {
         if (!entities.isEmpty() && entities.get(0) instanceof Record_label) {
-            String[] columnNames = {"ID", "Name"}; // Definisci i nomi delle colonne come desideri
+            String[] columnNames = {"ID", "Name"}; 
             DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
             for (Entity entity : entities) {
                 Record_label recordLabel = (Record_label) entity;
-                Object[] rowData = {recordLabel.getId(), recordLabel.getName()}; // Supponendo che l'entità Record_label abbia i metodi getId() e getName()
+                Object[] rowData = {recordLabel.getId(), recordLabel.getName()};
                 model.addRow(rowData);
             }
 
             return new JTable(model);
         } if (!entities.isEmpty() && entities.get(0) instanceof Artist) {
-            String[] columnNames = {"ID", "Name","Record_label_id"}; // Definisci i nomi delle colonne come desideri
+            String[] columnNames = {"ID", "Name","Record_label_id"};
             DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
             for (Entity entity : entities) {
                 Artist artist = (Artist) entity;
-                Object[] rowData = {artist.getId(), artist.getName(),artist.getRecord_label_id()}; // Supponendo che l'entità Record_label abbia i metodi getId() e getName()
+                Object[] rowData = {artist.getId(), artist.getName(),artist.getRecord_label_id()};
                 model.addRow(rowData);
             }
 
             return new JTable(model);
         }
         if (!entities.isEmpty() && entities.get(0) instanceof Album) {
-            String[] columnNames = {"ID","Artist_id" ,"Name","Date_release",}; // Definisci i nomi delle colonne come desideri
+            String[] columnNames = {"ID","Artist_id" ,"Name","Date_release",};
             DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
             for (Entity entity : entities) {
                 Album album = (Album) entity;
-                Object[] rowData = {album.getId(),album.getArtist_id(), album.getName(),album.getDate_release()}; // Supponendo che l'entità Record_label abbia i metodi getId() e getName()
+                Object[] rowData = {album.getId(),album.getArtist_id(), album.getName(),album.getDate_release()};
                 model.addRow(rowData);
             }
 
             return new JTable(model);
         }
         if (!entities.isEmpty() && entities.get(0) instanceof Song) {
-            String[] columnNames = {"ID","Album_id" ,"Name","Duration",}; // Definisci i nomi delle colonne come desideri
+            String[] columnNames = {"ID","Album_id" ,"Name","Duration",};
             DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
             for (Entity entity : entities) {
                 Song song = (Song) entity;
-                Object[] rowData = {song.getId(),song.getAlbum_id(), song.getName(),song.getDuration()}; // Supponendo che l'entità Record_label abbia i metodi getId() e getName()
+                Object[] rowData = {song.getId(),song.getAlbum_id(), song.getName(),song.getDuration()};
                 model.addRow(rowData);
             }
 
