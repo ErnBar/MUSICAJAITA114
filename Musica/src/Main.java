@@ -196,7 +196,6 @@ public class Main {
             rispostaOperazioni=IScanner.genericScanner(String.class,"\nVuoi effettuare altre operazioni?");
         }while (rispostaOperazioni.equalsIgnoreCase("si"));
         System.out.println("Arrivederci!");
-
-
+        
     }
 }

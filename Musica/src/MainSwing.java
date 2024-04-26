@@ -29,8 +29,10 @@ public class MainSwing {
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(0, 1));
+        panel.setBorder(BorderFactory.createEmptyBorder(25,25,25,25));
 
         JLabel label = new JLabel("Benvenuto");
+        label.setHorizontalAlignment(JLabel.CENTER);
         panel.add(label);
 
         JButton button = new JButton("Visualizza Tabelle");
